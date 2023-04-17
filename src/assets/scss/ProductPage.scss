@@ -1,0 +1,145 @@
+.product-page {
+  width: 90%;
+  margin: auto;
+  height: 100vh;
+}
+
+.product-intro {
+  display: flex;
+
+  .img-wrapper,
+  .product-info {
+    width: 50%;
+    // border: purple 1px solid;
+    padding: 1rem;
+  }
+
+  .img-wrapper {
+    display: flex;
+    justify-content: center;
+    .product-img {
+      width: 50%;
+      background: darkgray;
+      height: 50vh;
+      display: inline-block;
+    }
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: justify;
+
+    h1 {
+      color: #0018a8;
+      font-weight: bold;
+      font-size: 2.5rem;
+    }
+    .product-price {
+      color: #0018a8;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .product-actions {
+      display: flex;
+      // justify-content: space-between;
+      align-items: center;
+      // border: black 1px solid;
+      width: 75%;
+
+      * {
+        height: 100%;
+      }
+
+      .number-input {
+        font-size: 1.25rem;
+        max-width: 75px;
+        max-height: 2rem;
+        outline: none;
+        border-color: lightgray;
+
+        &:hover {
+          border-color: lightgray;
+        }
+      }
+
+      .qty-button {
+        background-color: white;
+        color: #0018a8;
+        font-size: 2rem;
+        font-weight: bold;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+
+        &:last-of-type {
+          margin-right: 1rem;
+        }
+      }
+
+      .add-to-cart-button {
+        background-color: #0018a8;
+        color: white;
+        font-weight: bold;
+        border: none;
+        padding: 1rem 0.5rem;
+        transition: background-color 200ms ease-in-out;
+
+        &:hover {
+          background-color: lighten(#0018a8, 15%);
+        }
+      }
+    }
+  }
+}
+
+.product-description {
+  margin-top: 2.5rem;
+  h2 {
+    color: #0018a8;
+    margin: 1rem 0;
+    font-weight: bold;
+  }
+  .product-description__content {
+    text-align: justify;
+    font-size: 1.1rem;
+
+    .product-description__paragraph {
+      margin: 1.5rem 0;
+      line-height: 1.5rem;
+    }
+  }
+}
+
+.similar-products {
+  margin: 4rem 0;
+  width: 100%;
+  h2 {
+    color: #0018a8;
+    margin: 1rem 0 2rem;
+    font-weight: bold;
+  }
+  .similar-products__list {
+    display: flex;
+
+    .similar-product {
+      // border: 1px solid black;
+      max-width: 350px;
+      margin-right: 1rem;
+      text-align: center;
+
+      h3 {
+        margin: 1rem 0;
+      }
+
+      .similar-product__image {
+        width: 350px;
+        height: 350px;
+        background-color: lightgray;
+        display: inline-block;
+      }
+    }
+  }
+}

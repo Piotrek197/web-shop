@@ -1,0 +1,32 @@
+.product {
+  //   border: 1px solid black;
+  position: relative;
+  max-width: 350px;
+
+  .in-cart-notification {
+    background-color: #00a0e085;
+    border: #0018a8;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 0;
+    // width: 25%;
+  }
+  .product__link {
+    text-align: center;
+    text-decoration: none !important;
+    color: black;
+
+    h3 {
+      margin-block: 1rem;
+    }
+    .product__img {
+      width: 100%;
+      max-height: 350px;
+    }
+  }
+}
