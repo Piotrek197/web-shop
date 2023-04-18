@@ -36,6 +36,11 @@
     margin-bottom: 0.5em;
     border-bottom: 1px solid lightgray;
 
+    div{
+      display:flex;
+      align-items:center;
+    }
+
     .cart-button {
       color: red;
       font-size: 1.1rem;
@@ -87,5 +92,30 @@
       background-color: antiquewhite;
       color: black;
     }
+  }
+}
+
+@media screen and (max-width: 1000px){
+  .cart-container{
+    display:block;
+    padding-top:0;
+    width:unset;
+    .left-side, .cart__totals{
+        width:100%;
+        margin-top:1rem;
+    }
+
+    .left-side .cart .cart__item div {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+@media screen and (max-width:650px){
+  .cart-container .cart .cart__item img {
+    display:none;
+  }
+  .left-side .cart .cart__item div {
+    min-width:70px;
   }
 }

@@ -15,16 +15,11 @@ const ProductSimilar = ({ product }: { product: ProductType }) => {
       <div className="similar-products__list">
         {similarProducts.map(product => (
           <div className="similar-product">
-            <span className="similar-product__image"></span>
+            <img src={new URL(`../../images/${product.sku}.jpg`, import.meta.url).href} className="similar-product__image"/>
             <h3>{product.name}</h3>
             <StyledAddToCartButton product={product} />
           </div>
         ))}
-        {/* <div className="similar-product">
-          <span className="similar-product__image"></span>
-          <h3>Product Name</h3>
-          <StyledAddToCartButton product={product} />
-        </div> */}
       </div>
     </div>
   );

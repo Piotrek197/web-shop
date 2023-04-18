@@ -1,20 +1,16 @@
 import { Link } from "react-router-dom";
+import {BsFillBasketFill} from "react-icons/bs";
+import useCart from "../hooks/useCart";
 
-type PropsType = {
-  viewCart: boolean;
-  setViewCart: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const Nav = ({ viewCart, setViewCart }: PropsType) => {
-  const viewCart1 = false;
-  const button = viewCart1 ? (
-    <button onClick={() => setViewCart(false)}>View Products</button>
-  ) : (
-    <Link to="/cart">View Cart</Link>
-  );
-
-  const content = <nav className="nav">{button}</nav>;
-  return content;
+const Nav = () => {
+  const { totalItems, totalPrice } = useCart();
+  return <nav className="nav">
+      <Link to="/cart" className="cart-link">
+        <BsFillBasketFill className="basket-icon"/>
+        <span>{totalItems}</span>
+      </Link>
+        <p className="price">{totalPrice}</p>
+    </nav>
 };
 
 export default Nav;

@@ -32,32 +32,20 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: PropsType) => {
       <div aria-label="Price Per Item">
         {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(item.price)}
       </div>
-      {/* <label htmlFor="itemQty" className="offscreen">
-        Item Quantity
-      </label> */}
-      {/* <input
-        name="itemQty"
-        id="itemQty"
-        type="number"
-        min="0"
-        max="20"
-        className="cart__select"
-        value={item.qty}
-        aria-label="Item Quantity"
-        onChange={onChangeQty}
-      ></input> */}
       <ProductQuantity quantity={quantity} setQuantity={setQuantity} />
       <div className="cart__item-subtotal" aria-label="Line Item Subtotal">
         {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(total)}
       </div>
 
-      <BsTrash
-        className="cart-button"
-        aria-label="Remove Item From Cart"
-        title="Remove Item From Cart"
-        onClick={onRemoveFromCart}
-        role="button"
-      />
+      <div>
+        <BsTrash
+          className="cart-button"
+          aria-label="Remove Item From Cart"
+          title="Remove Item From Cart"
+          onClick={onRemoveFromCart}
+          role="button"
+        />
+      </div>
     </li>
   );
 
