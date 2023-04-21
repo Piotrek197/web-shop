@@ -20,7 +20,7 @@ npm run dev
 
 ```
 docker pull piotrek197/webshop
-docker run -d -p 5173:5173 --name webshop-container webshop
+docker run -d -p 5173:5173 --name webshop-container piotrek197/webshop
 ```
 
 To see the project go to http://localhost:5173.
