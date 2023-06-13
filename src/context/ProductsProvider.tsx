@@ -9,17 +9,15 @@ export type ProductType = {
 };
 
 export type UseProductsContextType = {
-  products: ProductType[];
+  products: {[key: string]: ProductType[]};
   getProduct: (id: number) => ProductType | undefined;
-  getFromTheSameCategory: (product: ProductType) => ProductType[];
+  getFromTheSameCategory?: (product: ProductType) => ProductType[];
 };
 
 type ChildrenType = { children?: ReactElement | ReactElement[] | undefined };
 
-// const initState: ProductType[] = [];
-
-const initState: ProductType[] = [
-  {
+const initState: {[key: string]: ProductType[]} = {
+  cat001: [{
     id: 1,
     sku: "item0001",
     name: "Widget",
@@ -27,23 +25,24 @@ const initState: ProductType[] = [
     category: "cat001"
   },
   {
-    id: 2,
-    sku: "item0002",
-    name: "Premium Widget",
-    price: 19.99,
-    category: "cat002"
-  },
-  {
     id: 3,
     sku: "item0003",
     name: "Deluxe Widget",
     price: 29.99,
     category: "cat001"
-  }
-];
+  }],
+  cat002: [
+  {
+    id: 2,
+    sku: "item0002",
+    name: "Premium Widget",
+    price: 19.99,
+    category: "cat002"
+  }],
+};
 
 const initContextState: UseProductsContextType = {
-  products: [],
+  products: {},
   getProduct: (id: number) => {
     return {
       id: 0,
@@ -59,18 +58,16 @@ const initContextState: UseProductsContextType = {
 const ProductsContext = createContext<UseProductsContextType>(initContextState);
 
 export const ProductsProvider = ({ children }: ChildrenType): ReactElement => {
-  const [products, setProducts] = useState<ProductType[]>(initState);
-  initState;
+  // const [products, setProducts] = useState<{[key: string]: ProductType[]}>(initState);
 
-  const getProduct = (id: number) => {
-    return products.find(product => product.id === id);
-  };
+  const getProduct = (id: number) => Object.values(initState).flat().find(product => product.id === id);
 
-  const getFromTheSameCategory = (product1: ProductType) => {
-    return products.filter(
-      product => product.id !== product1.id && product.category === product1.category
-    );
-  };
+  const getFromTheSameCategory = (product1: ProductType) => 
+    Object.values(initState).flat().filter(product => product.id !== product1.id && product.category === product1.category);
+
+
+
+    
 
   // useEffect(() => {
   //   const fetchProducts = async (): Promise<ProductType[]> => {
@@ -87,7 +84,7 @@ export const ProductsProvider = ({ children }: ChildrenType): ReactElement => {
   // }, []);
 
   return (
-    <ProductsContext.Provider value={{ products, getProduct, getFromTheSameCategory }}>
+    <ProductsContext.Provider value={{ products: initState, getProduct, getFromTheSameCategory }}>
       {children}
     </ProductsContext.Provider>
   );

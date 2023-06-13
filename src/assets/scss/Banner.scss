@@ -1,0 +1,75 @@
+.store-banner {
+    background-color: #0161C2;
+    color:white;
+    display: flex;
+    justify-content: space-between;
+    
+    .left-side {
+        display: flex;
+        justify-content: center;
+        width:30%;
+        
+        div {
+            // border: 1px solid #ffffff;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            * {
+                margin-bottom: 1rem;
+            }
+
+            h2 {
+                font-size: 3.5rem;
+            }
+
+            button {
+                background-color: transparent;
+                border: 3px white solid;
+                padding: 0.65rem 1.25rem;
+                color:white;
+                margin-bottom: 2rem;
+            
+            }
+            
+        }
+    }
+
+    .right-side {
+        width: 30%;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        font: 60px/1 'Notable', sans-serif;
+        
+        span {
+            width:100%;
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        
+        }
+
+          @supports (-webkit-text-stroke: 1px black) {
+            span {
+              -webkit-text-stroke: 1px white;
+              -webkit-text-fill-color: transparent;
+            }
+            .filled-sale {
+                -webkit-text-stroke: 1px white;
+                -webkit-text-fill-color: white;
+            }
+          }
+
+    }
+
+    .banner-image {
+        width:40%;
+
+        img {
+            border-radius: 0;
+        }
+    }
+}

@@ -7,15 +7,16 @@ export type CartItemType = {
   qty: number;
 };
 
-type CartStateType = { cart: CartItemType[] };
+type CartStateType = { cart: CartItemType[], visible: boolean};
 
-const initCartState: CartStateType = { cart: [] };
+const initCartState: CartStateType = { cart: [], visible: false};
 
 const REDUCER_ACTION_TYPE = {
   ADD: "ADD",
   REMOVE: "REMOVE",
   QUANTITY: "QUANTITY",
-  SUBMIT: "SUBMIT"
+  SUBMIT: "SUBMIT",
+  REMOVE_VISIBLE: "REMOVE_VISIBLE"
 };
 
 export type ReducerActionType = typeof REDUCER_ACTION_TYPE;
@@ -23,6 +24,7 @@ export type ReducerActionType = typeof REDUCER_ACTION_TYPE;
 export type ReducerAction = {
   type: string;
   payload?: CartItemType;
+  setVisible?: boolean
 };
 
 const reducer = (state: CartStateType, action: ReducerAction): CartStateType => {
@@ -36,7 +38,7 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
       const filteredCart: CartItemType[] = state.cart.filter(item => item.sku !== sku);
       const itemExists: CartItemType | undefined = state.cart.find(item => item.sku === sku);
       const finalQty: number = itemExists ? itemExists.qty + qty : qty;
-      return { ...state, cart: [...filteredCart, { sku, name, price, qty: finalQty }] };
+      return { ...state, cart: [...filteredCart, { sku, name, price, qty: finalQty }], visible: action.setVisible ?? false};
     }
     case REDUCER_ACTION_TYPE.REMOVE: {
       if (!action.payload) {
@@ -63,6 +65,9 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
     case REDUCER_ACTION_TYPE.SUBMIT: {
       return { ...state, cart: [] };
     }
+    case REDUCER_ACTION_TYPE.REMOVE_VISIBLE: {
+      return { ...state, visible: false}
+    }
 
     default:
       throw new Error("Undefined reducer action type");
@@ -86,13 +91,7 @@ const useCartContext = (initCartState: CartStateType) => {
     }, 0)
   );
 
-  const cart = state.cart.sort((a, b) => {
-    const itemA: number = Number(a.sku.slice(-4));
-    const itemB: number = Number(b.sku.slice(-4));
-    return itemA - itemB;
-  });
-
-  return { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart };
+  return { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart: state.cart, visible: state.visible};
 };
 
 export type UseCartContextType = ReturnType<typeof useCartContext>;
@@ -102,7 +101,8 @@ const initCartContextState: UseCartContextType = {
   REDUCER_ACTIONS: REDUCER_ACTION_TYPE,
   totalItems: 0,
   totalPrice: "",
-  cart: []
+  cart: [],
+  visible: false
 };
 
 export const CartContext = createContext<UseCartContextType>(initCartContextState);

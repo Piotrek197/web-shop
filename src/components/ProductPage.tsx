@@ -9,8 +9,9 @@ import ProductInfo from "./ProductPage/ProductInfo";
 import ProductDescription from "./ProductPage/ProductDescription";
 import ProductSimilar from "./ProductPage/ProductSimilar";
 
-//custom hooks
-// import useCart from "../hooks/useCart";
+import Cart from "./Cart";
+import useCart from "../hooks/useCart";
+
 import useProducts from "../hooks/useProducts";
 import "../assets/scss/ProductPage.scss";
 
@@ -21,10 +22,15 @@ const ProductPage = () => {
   const initialState = { id: 0, sku: "", name: "", price: 0, category: "" };
   const [product, setProduct] = useState<ProductType>(initialState);
 
+  const {dispatch, REDUCER_ACTIONS, visible} = useCart();
+
+  const handleOverlayClick = () => {
+    dispatch({type: REDUCER_ACTIONS.REMOVE_VISIBLE})
+  };
+
   useEffect(() => {
     const product = getProduct(Number(id));
     setProduct(product ?? initialState);
-    console.log(product);
   }, []);
 
   return (
@@ -35,6 +41,8 @@ const ProductPage = () => {
       </div>
       <ProductDescription />
       <ProductSimilar product={product} />
+      <Cart cartActive={visible}/>
+      <div className={`app-overlay ${visible ? "app-overlay--active": ""}`} onClick={handleOverlayClick}></div>
     </section>
   );
 };

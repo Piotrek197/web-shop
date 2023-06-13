@@ -25,7 +25,7 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
           id="add-to-cart-btn"
           className="add-to-cart-button"
           onClick={() =>
-            dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, qty: quantity } })
+            dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, qty: quantity }, setVisible: true })
           }
         >
           Add To Cart

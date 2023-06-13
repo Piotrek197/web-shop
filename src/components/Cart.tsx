@@ -1,71 +1,52 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useCart from "../hooks/useCart";
-import { useState } from "react";
-import CartLineItem from "./CartLineItem";
+import { CartItemType } from "../context/CartProvider";
 import "../assets/scss/Cart.scss";
-import styled from "styled-components";
 
-const Cart = () => {
-  const [confirm, setConfirm] = useState(false);
 
-  const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
+const Cart = ({cartActive} : {cartActive: boolean}) => {
+    const { cart, dispatch, REDUCER_ACTIONS } = useCart();
+    const [item, setItem] = useState<CartItemType | null>(null);
+    const img: string = new URL(`../images/${item?.sku}.jpg`, import.meta.url).href;
+    const navigate = useNavigate();
 
-  const onSubmit = () => {
-    dispatch({ type: REDUCER_ACTIONS.SUBMIT });
-    setConfirm(true);
-  };
+    const closeNotification = () => dispatch({type: REDUCER_ACTIONS.REMOVE_VISIBLE});
+    
+    const onKeyDown = (e: KeyboardEvent) => e.key === "Escape" && closeNotification();
 
-  const pageContent = confirm ? (
-    <h2>Thank you for your order</h2>
-  ) : (
-    <section className="cart-container">
-      <h2 className="offscreen">Cart</h2>
-      <div className="left-side">
-        <ul className="cart">
-          <div className="class-header">
-            <span></span>
-            <span>Product</span>
-            <span>Price</span>
-            <span>Quantity</span>
-            <span>Total Price</span>
-          </div>
-          {totalItems ? (
-            cart.map(item => {
-              return (
-                <CartLineItem
-                  key={item.sku}
-                  item={item}
-                  dispatch={dispatch}
-                  REDUCER_ACTIONS={REDUCER_ACTIONS}
-                />
-              );
-            })
-          ) : (
-            <p style={{ margin: "1rem" }}>No items in cart</p>
-          )}
-        </ul>
-      </div>
-      {/* Order Summary */}
-      <div className="cart__totals">
-        <h2>Order Summary</h2>
-        <div className="">
-          {totalItems ? (
-            <>
-              <p>Total Items: {totalItems}</p>
-              <p>Total Price: {totalPrice}</p>
-              <p>Shipping cost: $15.00</p>
-            </>
-          ) : (
-            <p style={{ marginBlock: "1rem" }}>No items in cart</p>
-          )}
-        </div>
-        <button className="cart__submit" disabled={!totalItems} onClick={onSubmit}>
-          Place Order
-        </button>
-      </div>
-    </section>
-  );
+    const handleOnClick = () => {
+        closeNotification();
+        navigate("/checkout");
+    };
 
-  return <main className="main main--cart">{pageContent}</main>;
-};
 
+    useEffect(() => {
+        setItem(cart.at(-1) ?? null);
+        document.addEventListener("keydown", onKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", onKeyDown);
+        }
+    }, [cart])
+
+    return ( 
+        <div className={`cart-1 ${(cartActive ? "cart-1--active" : "")}`}>
+            <h2>Product added to a cart</h2>
+            <div className="item-preview">
+                <div>
+                    <img src={img} className="preview-cart-image" />
+                </div>
+                <div>
+                    <h3>{item?.name}</h3>
+                    <p>Price: {item?.price}</p>
+                    <p>Quantity: {item?.qty} </p>
+                </div>
+             </div>
+
+             <button onClick={handleOnClick}>Go to cart</button>
+            
+        </div> );
+}
+ 
 export default Cart;
