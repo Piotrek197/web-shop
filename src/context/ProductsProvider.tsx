@@ -11,7 +11,7 @@ export type ProductType = {
 export type UseProductsContextType = {
   products: {[key: string]: ProductType[]};
   getProduct: (id: number) => ProductType | undefined;
-  getFromTheSameCategory?: (product: ProductType) => ProductType[];
+  getFromTheSameCategory: (product: ProductType) => ProductType[];
 };
 
 type ChildrenType = { children?: ReactElement | ReactElement[] | undefined };
