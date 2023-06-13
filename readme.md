@@ -2,6 +2,8 @@
 
 A Frontend layer of webshop made in React Typescript.
 
+[Live demo](https://creative-kitten-d74232.netlify.app)
+
 ## Installation
 
 ### Manual installation
