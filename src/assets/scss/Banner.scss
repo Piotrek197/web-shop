@@ -25,11 +25,21 @@
             }
 
             button {
-                background-color: transparent;
+                // background-color: transparent;
                 border: 3px white solid;
                 padding: 0.65rem 1.25rem;
                 color:white;
                 margin-bottom: 2rem;
+                background: linear-gradient(to right, white 50%, transparent 50%)  right;
+                background-position: right;
+                background-size: 200%;
+                transition: all 200ms ease-in-out;
+                font-weight:bold;
+
+                &:hover{
+                    background-position: left;
+                    color:#0161C2;
+                }
             
             }
             
@@ -71,5 +81,31 @@
         img {
             border-radius: 0;
         }
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .store-banner{
+        .left-side, .banner-image {
+            width:50%;
+        }
+
+        .right-side {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 650px){
+    .store-banner {
+        .right-side,  .banner-image {
+            display:none;
+        }
+
+        .left-side {
+            width:100%;
+        }
+
+        padding-block: 1rem;
     }
 }

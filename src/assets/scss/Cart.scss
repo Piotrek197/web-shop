@@ -10,14 +10,38 @@
     transform: translateX(0);
     padding: 1rem;
 
+    h2 {
+        margin-bottom: 2rem;
+    }
 
     .item-preview {
         display:flex;
-        border: 1px solid black;
+        // border: 1px solid black;
+        margin-block: 1rem;
 
         .preview-cart-image {
             width: 100px;
-            border: 1px solid black;
+            margin-right: 1rem;
+            // border: 1px solid black;
+        }
+
+        .item-preview__content * {
+            margin-top: 0.5rem;
+        }
+    }
+    
+    button {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: #0018a8;
+        border: none;
+        padding: 0.75rem 1rem;
+        color: white;
+        font-weight:bold;
+
+        &:hover {
+            background-color: lighten(#0018a8, 10%);
         }
     }
 }

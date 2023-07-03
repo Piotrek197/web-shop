@@ -37,7 +37,7 @@ const Cart = ({cartActive} : {cartActive: boolean}) => {
                 <div>
                     <img src={img} className="preview-cart-image" />
                 </div>
-                <div>
+                <div className="item-preview__content">
                     <h3>{item?.name}</h3>
                     <p>Price: {item?.price}</p>
                     <p>Quantity: {item?.qty} </p>
