@@ -1,7 +1,7 @@
 .product-page {
   width: 90%;
   margin: auto;
-  height: 100vh;
+  // height: 100vh;
 }
 
 .product-intro {
@@ -116,5 +116,44 @@
         display: inline-block;
       }
     }
+  }
+}
+
+@media screen and (max-width:600px) {
+
+
+  .product-intro {
+    display: block;
+
+    .img-wrapper {
+
+      width:unset;
+  
+      .product-img {
+        max-height: 50vh;
+        width: auto;
+      }
+
+    }
+
+    .product-info {
+      width:unset;
+      padding-left: unset;
+      padding-right: unset;
+
+      .product-price {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .product-actions {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+
+  .similar-products .similar-products__list{
+    justify-content: center;
   }
 }

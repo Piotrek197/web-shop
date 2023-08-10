@@ -205,6 +205,18 @@ nav .price {
   gap: 1em;
 } */
 
+@media screen and (max-width: 600px) {
+
+  .category-products {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category-products .product {
+    margin-bottom: 50px;
+  }
+}
+
 @media screen and (min-width: 601px) {
   .product {
     width: 30%;
@@ -222,6 +234,7 @@ nav .price {
   .cart__submit {
     max-width: 300px;
   }
+
 }
 
 @media screen and (min-width: 1650px){

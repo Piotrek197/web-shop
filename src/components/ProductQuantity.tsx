@@ -11,6 +11,7 @@ const Input = styled.input`
     border-color: lightgray;
   }
 
+  /*
   @media screen and (max-width:1000px){
     font-size: 1rem;
     max-width: 30px;
@@ -19,7 +20,7 @@ const Input = styled.input`
   @media screen and (max-width:650px){
     font-size: 0.75rem;
     max-width: 30px;
-  }
+  }*/
 `;
 
 const Button = styled.button`
