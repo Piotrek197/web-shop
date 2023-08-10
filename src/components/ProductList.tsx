@@ -12,7 +12,7 @@ import "../assets/scss/Banner.scss";
 const ProductList = () => {
   // const { cart } = useCart();
   const { products } = useProducts();
-  const img: string = new URL(`../images/happy-girl.jpg`, import.meta.url).href;
+  const img: string = new URL(`../assets/images/happy-girl.jpg`, import.meta.url).href;
 
   // let pageContent: ReactElement | ReactElement[] = ;
 
